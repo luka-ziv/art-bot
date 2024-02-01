@@ -1,18 +1,27 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+import process
 
 app = FastAPI()
 
-class ResponseBody(BaseModel):
-    # Update class with art data.
-    name: str = None
-    title: str = None
+class ImageResponse(BaseModel):
+    b64image: str = None
+
+class PromptResponse(BaseModel):
+    children: list = None
     
 
-@app.get('/endpoint')
-def generate_art():
+@app.get('/image')
+def generate_image_request(prompt: str):
+    image_b64 = process.generate_image(prompt)
+    response = ImageResponse()
+    response.b64image = image_b64
+    return response
 
 
-    response_body = ResponseBody()
-    # Insert relevant art data into initialized response body.
-    return response_body
+@app.get('/prompts')
+def generate_prompts_request(mother: str, num_children: int):
+    children = process.generate_prompts(mother, num_children)
+    response = PromptResponse()
+    response.children = children
+    return response
