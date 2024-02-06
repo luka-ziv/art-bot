@@ -1,6 +1,6 @@
 FROM python:latest
 
-ADD app.py .
+ADD ./src .
 
 RUN pip install fastapi "uvicorn[standard]" pydantic openai
 
