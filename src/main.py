@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-import process
+import src.process as process    # Referenced from working dir (assigned locally by venv)
 
 app = FastAPI()
 
