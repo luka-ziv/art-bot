@@ -9,7 +9,12 @@ class ImageResponse(BaseModel):
 
 class PromptResponse(BaseModel):
     children: list = None
-    
+
+
+@app.get('/')
+def home():
+    return {"response": "Connection to Art-LLM component successful."}
+
 
 @app.get('/image')
 def generate_image_request(prompt: str):
