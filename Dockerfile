@@ -17,4 +17,4 @@ ENV API_KEY=${API_KEY}
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Port on run command must match exposed port.
-CMD ["uvicorn", "src.main:app", "--port", "80"]
+CMD ["uvicorn", "src.main:app", "--port", "80", "--host", "0.0.0.0"]
