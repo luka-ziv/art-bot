@@ -16,4 +16,5 @@ ENV API_KEY=${API_KEY}
 # Command is being run IN the container, so paths need to reflect this.
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["uvicorn", "src.main:app"]
+# Port on run command must match exposed port.
+CMD ["uvicorn", "src.main:app", "--port", "80"]
